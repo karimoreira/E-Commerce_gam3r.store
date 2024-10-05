@@ -1,0 +1,23 @@
+{
+    "name": "@gstore/core",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup src/index.ts --dts --minify",
+        "dev": "tsup src/index.ts --dts --watch",
+        "test": "jest --watchAll --collectCoverage"
+    },
+    "keywords": ["gstore", "core"],
+    "author": "kari atilio",
+    "license": "ISC",
+    "description": "Pacote principal para gerenciamento de produtos e funcionalidades do GStore.",
+    "dependencies": {
+
+    },
+    "devDependencies": {
+        "jest": "^29.7.0",
+        "tsup": "^8.2.4",
+        "typescript": "^5.0.0"
+    }
+}
