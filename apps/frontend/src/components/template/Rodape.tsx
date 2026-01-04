@@ -36,14 +36,13 @@ export default function Rodape() {
                         <IconBrandFacebook size={28} stroke={1} />
                         <IconBrandLinkedin size={28} stroke={1} />
                     </div>
-                    <div className="flex flex-col md:flex-row items-center gap-1.5 text-sm text-zinc-500">
+                    <div className="flex flex-col md:flex-row items-center gap-1.5 text-lg text-white font-semibold">
                         <div className="flex gap-1.5">
-                            <span>Feito com</span>
-                            <span>❤️</span>
-                            <span>em {new Date().getFullYear()}</span>
+                            <span>Feito por </span>
+                            <a href="https://www.linkedin.com/in/atiliomoreira/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                                Kari Atílio Moreira
+                            </a>
                         </div>
-                        <span className="hidden md:inline-block">-</span>
-                        <span>Todos os direitos reservados</span>
                     </div>
                 </div>
             </div>

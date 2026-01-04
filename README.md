@@ -1,81 +1,72 @@
-# Turborepo starter
+# Gam3r.store - formação.dev full stack / cod3r - 2024
 
-This is an official starter Turborepo.
+<img src="./img/imagehome.png" width="100%" alt="Home da loja" />
+<br />
+<img src="./img/image.png" width="100%" alt="Detalhes do produto" />
 
-## Using this example
+projeto e-commerce desenvolvido com Next.js (Frontend) e NestJS (Backend), utilizando TurboRepo para gerenciamento do monorepo.
 
-Run the following command:
+- Node.js
+- PostgreSQL 
 
-```sh
-npx create-turbo@latest
+
+ Instale as dependências na raiz do projeto:
+   ```bash
+   npm install
+   ```
+
+
+O projeto utiliza Prisma com PostgreSQL.
+
+### opção 1: via docker 
+
+basta rodar na raiz:
+
+```bash
+docker-compose up -d
+```
+subirá um container com o PostgreSQL pronto para uso.
+
+### Opção 2: PostgreSQL Local
+
+PostgreSQL no Windows:
+1. Certifique-se que o serviço do Postgres está rodando.
+2. Crie um banco de dados chamado `gstore`.
+
+## Configuração do Ambiente
+
+1. Crie o arquivo `.env` em `apps/backend/.env` (se não existir).
+2. Configure a variável `DATABASE_URL`.
+
+exemplo para docker ou Local (com senha 'password'):
+```env
+DATABASE_URL="postgresql://postgres:password@localhost:5432/gstore?schema=public"
 ```
 
-## What's inside?
+### migrations e seed
 
-This Turborepo includes the following packages/apps:
+com o banco rodando e o .env configurado, execute os comandos abaixo para criar as tabelas e popular o banco:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```bash
+cd apps/backend
+npx prisma migrate dev
+npx prisma db seed
+cd ../..
 ```
 
-### Develop
+volte para a raiz do projeto e inicie o ambiente de desenvolvimento:
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+```bash
+npm run dev
 ```
 
-### Remote Caching
+O TurboRepo iniciará:
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend: [http://localhost:3005](http://localhost:3005)
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## estrutura do projeto
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- apps/frontend: aplicação next.js (Loja virtual)
+- apps/backend: API NestJS
+- packages/core: lógica de negócios compartilhada 
+- packages/ui: componentes de UI compartilhados
